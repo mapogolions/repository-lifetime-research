@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SingletonLifetimePItfall.Controllers;
-using SingletonLifetimePItfall.Data;
-using SingletonLifetimePItfall.Repositories;
+using SingletonLifetimePitfall.Controllers;
+using SingletonLifetimePitfall.Data;
+using SingletonLifetimePitfall.Repositories;
 
-namespace SingletonLifetimePItfall;
+namespace SingletonLifetimePitfall;
 
 internal static class Program
 {

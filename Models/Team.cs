@@ -1,4 +1,4 @@
-namespace SingletonLifetimePItfall.Models;
+namespace SingletonLifetimePitfall.Models;
 
 public class Team
 {

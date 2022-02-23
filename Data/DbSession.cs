@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using SingletonLifetimePItfall.Models;
+using SingletonLifetimePitfall.Models;
 
-namespace SingletonLifetimePItfall.Data;
+namespace SingletonLifetimePitfall.Data;
 
 public class DbSession : DbContext
 {
