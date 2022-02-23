@@ -1,4 +1,4 @@
-namespace RepositoryLifetimeResearch.Models;
+namespace SingletonLifetimePItfall.Models;
 
 public class Team
 {

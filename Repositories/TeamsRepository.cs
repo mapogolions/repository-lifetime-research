@@ -1,7 +1,7 @@
-using RepositoryLifetimeResearch.Data;
-using RepositoryLifetimeResearch.Models;
+using SingletonLifetimePItfall.Data;
+using SingletonLifetimePItfall.Models;
 
-namespace RepositoryLifetimeResearch.Repositories;
+namespace SingletonLifetimePItfall.Repositories;
 
 public class TeamsRepository : ITeamsRepository
 {

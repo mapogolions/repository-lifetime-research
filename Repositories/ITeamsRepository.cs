@@ -1,6 +1,6 @@
-using RepositoryLifetimeResearch.Models;
+using SingletonLifetimePItfall.Models;
 
-namespace RepositoryLifetimeResearch.Repositories;
+namespace SingletonLifetimePItfall.Repositories;
 
 public interface ITeamsRepository
 {

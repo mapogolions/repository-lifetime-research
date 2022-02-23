@@ -1,7 +1,7 @@
-using RepositoryLifetimeResearch.Models;
-using RepositoryLifetimeResearch.Repositories;
+using SingletonLifetimePItfall.Models;
+using SingletonLifetimePItfall.Repositories;
 
-namespace RepositoryLifetimeResearch.Controllers;
+namespace SingletonLifetimePItfall.Controllers;
 
 public class TeamsController
 {

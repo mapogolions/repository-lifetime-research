@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace RepositoryLifetimeResearch.Models;
+namespace SingletonLifetimePItfall.Models;
 
 public class TeamConfiguration : IEntityTypeConfiguration<Team>
 {
