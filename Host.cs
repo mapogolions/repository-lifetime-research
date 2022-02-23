@@ -30,6 +30,9 @@ public class Host
             case RequestProcessing.Parallel:
                 new ParallelProcessing(_services.Value).Process(_incomingRequests);
                 break;
+            case RequestProcessing.Sequential:
+                new SequentialProcessing(_services.Value).Process(_incomingRequests);
+                break;
             default:
                 throw new NotImplementedException();
         }

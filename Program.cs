@@ -11,5 +11,7 @@ internal static class Program
             .IncomingRequest(new HttpRequest("GET", "/foo"))
             .IncomingRequest(new HttpRequest("GET", "/bar"))
             .IncomingRequest(new HttpRequest("GET", "/baz"))
-            .Process(RequestProcessing.Parallel);
+            // .Process(RequestProcessing.Parallel)
+            .Process(RequestProcessing.Sequential)
+            ;
 }
