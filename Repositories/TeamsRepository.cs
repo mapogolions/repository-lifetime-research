@@ -3,11 +3,11 @@ using RepositoryLifetimeResearch.Models;
 
 namespace RepositoryLifetimeResearch.Repositories;
 
-public class TeamRepository : ITeamRepository
+public class TeamsRepository : ITeamsRepository
 {
     private readonly DbSession _session;
 
-    public TeamRepository(DbSession session)
+    public TeamsRepository(DbSession session)
     {
         _session = session;
     }
