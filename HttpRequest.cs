@@ -1,3 +1,3 @@
 namespace SingletonLifetimePitfall;
 
-public record HttpRequest(string Method, string Path);
+public record HttpRequest(string Method, string path);

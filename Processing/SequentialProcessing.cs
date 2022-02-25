@@ -1,37 +1,29 @@
 using Microsoft.Extensions.DependencyInjection;
 using SingletonLifetimePitfall.Controllers;
-using SingletonLifetimePitfall.Data;
 
 namespace SingletonLifetimePitfall.Processing;
 
 public class SequentialProcessing : IRequestProcessing
 {
-    private readonly IServiceCollection _services;
+    private readonly IServiceProvider _serviceProvider;
 
-    public SequentialProcessing(IServiceCollection services)
+    public SequentialProcessing(IServiceProvider serviceProvider)
     {
-        _services = services;
+        _serviceProvider = serviceProvider;
     }
 
     public void Process(IEnumerable<HttpRequest> requests)
     {
-         using (var serviceProvider = _services.BuildServiceProvider())
-        {
-            var session = serviceProvider.GetRequiredService<DbSession>();
-            session.Database.EnsureCreated();
-            var task = requests.Aggregate(Task.CompletedTask, (task, request) =>
-                task.ContinueWith(completedTask =>
+        var task = requests.Aggregate(Task.CompletedTask, (task, request) =>
+            task.ContinueWith(completedTask =>
+                {
+                    using (var requestScope = _serviceProvider.CreateScope())
                     {
-                        using (var requestScope = serviceProvider.CreateScope())
-                        {
-                            var teamsController = requestScope.ServiceProvider.GetRequiredService<TeamsController>();
-                            _ = teamsController.Index();
-                            Console.WriteLine($"{request} done");
-                        }
-                    }));
-
-            task.Wait();
-            session.Database.EnsureDeleted();
-        }
+                        var teamsController = requestScope.ServiceProvider.GetRequiredService<TeamsController>();
+                        _ = teamsController.Index();
+                        Console.WriteLine($"{request} done");
+                    }
+                }));
+        task.Wait();
     }
 }

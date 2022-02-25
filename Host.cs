@@ -25,16 +25,18 @@ public class Host
 
     public void Process(RequestProcessing requestProcessing)
     {
-        switch (requestProcessing)
+        using (var serviceProvider = _services.Value.BuildServiceProvider())
         {
-            case RequestProcessing.Parallel:
-                new ParallelProcessing(_services.Value).Process(_incomingRequests);
-                break;
-            case RequestProcessing.Sequential:
-                new SequentialProcessing(_services.Value).Process(_incomingRequests);
-                break;
-            default:
-                throw new NotImplementedException();
+            IRequestProcessing processing = requestProcessing switch
+                {
+                    RequestProcessing.Parallel => new ParallelProcessing(serviceProvider),
+                    RequestProcessing.Sequential => new SequentialProcessing(serviceProvider),
+                    _ => throw new NotImplementedException()
+                };
+            var session = serviceProvider.GetRequiredService<DbSession>();
+            session.Database.EnsureCreated();
+            processing.Process(_incomingRequests);
+            session.Database.EnsureDeleted();
         }
     }
 
