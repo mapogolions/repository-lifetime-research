@@ -5,12 +5,12 @@ namespace SingletonLifetimePitfall.Controllers;
 
 public class MockController
 {
-    private readonly IMockRepository _teams;
+    private readonly IMockRepository _entities;
 
-    public MockController(IMockRepository teams)
+    public MockController(IMockRepository entities)
     {
-        _teams = teams;
+        _entities = entities;
     }
 
-    public IEnumerable<MockEntity> Index() => _teams.All();
+    public IEnumerable<MockEntity> Index() => _entities.All();
 }

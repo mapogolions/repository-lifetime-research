@@ -19,8 +19,8 @@ public class SequentialProcessing : IRequestProcessing
                 {
                     using (var requestScope = _serviceProvider.CreateScope())
                     {
-                        var teamsController = requestScope.ServiceProvider.GetRequiredService<MockController>();
-                        _ = teamsController.Index();
+                        var controller = requestScope.ServiceProvider.GetRequiredService<MockController>();
+                        _ = controller.Index();
                         Console.WriteLine($"{request} done");
                     }
                 }));
