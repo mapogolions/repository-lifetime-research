@@ -1,6 +1,6 @@
 namespace SingletonLifetimePitfall.Models;
 
-public class Team
+public class MockEntity
 {
     public int Id { get; init; }
     public string? Name { get; init; }

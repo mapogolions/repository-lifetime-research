@@ -9,7 +9,7 @@ namespace SingletonLifetimePitfall;
 
 public class Host
 {
-    private readonly List<HttpRequest> _incomingRequests = new();
+    private readonly List<MockRequest> _incomingRequests = new();
     private readonly Lazy<IServiceCollection> _services;
 
     public Host(IServiceCollection services)
@@ -17,7 +17,7 @@ public class Host
         _services = new(() => ConfigureServices(services));
     }
 
-    public Host IncomingRequest(HttpRequest request)
+    public Host IncomingRequest(MockRequest request)
     {
         _incomingRequests.Add(request);
         return this;
@@ -47,9 +47,9 @@ public class Host
                 .AddIniFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appSettings.ini"))
                 .Build());
         services.AddDbContext<DbSession>();
-        // services.AddSingleton<ITeamsRepository, TeamsRepository>(); // uncomment to reproduce issue
-        services.AddScoped<ITeamsRepository, TeamsRepository>(); // comment to repoduce issue
-        services.AddScoped<TeamsController>();
+        // services.AddSingleton<IMockRepository, MockRepository>(); // uncomment to reproduce issue
+        services.AddScoped<IMockRepository, MockRepository>(); // comment to repoduce issue
+        services.AddScoped<MockController>();
         return services;
     }
 }

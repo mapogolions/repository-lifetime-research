@@ -12,14 +12,14 @@ public class SequentialProcessing : IRequestProcessing
         _serviceProvider = serviceProvider;
     }
 
-    public void Process(IEnumerable<HttpRequest> requests)
+    public void Process(IEnumerable<MockRequest> requests)
     {
         var task = requests.Aggregate(Task.CompletedTask, (task, request) =>
             task.ContinueWith(completedTask =>
                 {
                     using (var requestScope = _serviceProvider.CreateScope())
                     {
-                        var teamsController = requestScope.ServiceProvider.GetRequiredService<TeamsController>();
+                        var teamsController = requestScope.ServiceProvider.GetRequiredService<MockController>();
                         _ = teamsController.Index();
                         Console.WriteLine($"{request} done");
                     }

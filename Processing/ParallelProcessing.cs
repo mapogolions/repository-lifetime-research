@@ -12,14 +12,14 @@ public class ParallelProcessing : IRequestProcessing
         _serviceProvider = serviceProvider;
     }
 
-    public void Process(IEnumerable<HttpRequest> requests)
+    public void Process(IEnumerable<MockRequest> requests)
     {
         var tasks = requests.Select(request =>
             new Task(() =>
             {
                 using (var requestScope = _serviceProvider.CreateScope())
                 {
-                    var teamsController = requestScope.ServiceProvider.GetRequiredService<TeamsController>();
+                    var teamsController = requestScope.ServiceProvider.GetRequiredService<MockController>();
                     _ = teamsController.Index();
                     Console.WriteLine($"{request} done");
                 }

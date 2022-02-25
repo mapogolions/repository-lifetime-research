@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace SingletonLifetimePitfall.Models;
 
-public class TeamConfiguration : IEntityTypeConfiguration<Team>
+public class MockEntityConfiguration : IEntityTypeConfiguration<MockEntity>
 {
-    public void Configure(EntityTypeBuilder<Team> builder)
+    public void Configure(EntityTypeBuilder<MockEntity> builder)
     {
         builder.Property(x => x.Name).IsRequired();
     }

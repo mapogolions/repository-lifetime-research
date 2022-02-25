@@ -7,11 +7,11 @@ internal static class Program
 {
     internal static void Main() =>
         new Host(new ServiceCollection())
-            .IncomingRequest(new HttpRequest("GET", "/"))
-            .IncomingRequest(new HttpRequest("GET", "/foo"))
-            .IncomingRequest(new HttpRequest("GET", "/bar"))
-            .IncomingRequest(new HttpRequest("GET", "/baz"))
-            // .Process(RequestProcessing.Parallel)
-            .Process(RequestProcessing.Sequential)
+            .IncomingRequest(new MockRequest("GET", "/"))
+            .IncomingRequest(new MockRequest("GET", "/foo"))
+            .IncomingRequest(new MockRequest("GET", "/bar"))
+            .IncomingRequest(new MockRequest("GET", "/baz"))
+            .Process(RequestProcessing.Parallel)
+            // .Process(RequestProcessing.Sequential)
             ;
 }

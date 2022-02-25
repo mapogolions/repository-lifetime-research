@@ -20,7 +20,7 @@ public class DbSession : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new TeamConfiguration());
+        modelBuilder.ApplyConfiguration(new MockEntityConfiguration());
         base.OnModelCreating(modelBuilder);
     }
 }
